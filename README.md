@@ -33,10 +33,23 @@ Then open <http://localhost:8765>.
 - `index.html` – user interface
 - `style.css` – styling (light and dark mode)
 - `app.js` – all the math logic
-- Math library: [math.js](https://mathjs.org) (loaded from a CDN, needs internet)
+- `vendor/math.min.js` – math library [math.js](https://mathjs.org) 12.4.2 (Apache-2.0), bundled so it works offline
+- `desktop/` – Windows desktop app (pywebview + PyInstaller)
 
 ## Input tips
 
 - You can leave out the multiplication sign: `2x`, `3(x+1)`
 - Powers: `x^2`, square root: `sqrt(x)`, pi: `pi`
 - In the calculator, `log` is base 10 and `ln` is the natural logarithm
+
+## Desktop app (Windows .exe)
+
+Download `MathSolver.exe` from the [Releases](../../releases) page and double-click it. Works offline (math.js is bundled). Needs Microsoft Edge WebView2, which is built into Windows 10/11.
+
+Build it yourself:
+
+```bash
+powershell -ExecutionPolicy Bypass -File desktop\build.ps1
+```
+
+The exe ends up in `dist\MathSolver.exe`.
