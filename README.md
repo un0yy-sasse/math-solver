@@ -1,42 +1,42 @@
-# Mathe-Löser
+# Math Solver
 
-Ein Taschenrechner für (fast) alle Mathe-Themen – mit **Lösungsweg**. Läuft komplett im Browser, keine Installation nötig.
+A calculator for (almost) every math topic – with **step-by-step solutions**. Runs entirely in the browser, no installation needed.
 
-## Funktionen
+## Features
 
-| Bereich | Was er kann |
+| Area | What it does |
 |---|---|
-| **Rechner** | Wissenschaftlicher Rechner (Grad/Bogenmaß, `sin`, `cos`, `tan`, `sqrt`, `lg`, `ln`, `^`, `!`, `%`, `ans`), Verlauf |
-| **Brüche** | `+ − · :` mit Schritten (Hauptnenner, Erweitern, Kehrwert, Kürzen), gemischte Zahlen (`1 2/3`), Dezimal & Prozent, beliebige Bruch-Terme exakt |
-| **Gleichungen** | Linear, quadratisch (Diskriminante + Mitternachtsformel, auch komplex), kubisch, Bruchgleichungen, beliebige Gleichungen numerisch (`sin(x) = 0.5`, `2^x = 32`) |
-| **Gleichungssysteme** | Lineare Systeme mit beliebig vielen Variablen (Matrix, Determinante, Lösung) |
-| **Terme & Analysis** | Vereinfachen, Ausmultiplizieren, 1. und 2. Ableitung, bestimmtes Integral, Funktionswerte |
-| **Funktionsplotter** | Mehrere Funktionen gleichzeitig zeichnen (mit `;` trennen) |
-| **Geometrie** | Quadrat, Rechteck, Dreiecke (Heron, Pythagoras, Winkel), Kreis, Kreisausschnitt, Trapez, Raute, Würfel, Quader, Zylinder, Kegel, Kugel, Pyramide |
-| **Prozent & Dreisatz** | Grundwert/Prozentsatz/Prozentwert, proportionaler und antiproportionaler Dreisatz |
-| **Statistik** | Mittelwert, Median, Modus, Quartile, Varianz, Standardabweichung u. v. m. |
-| **Teiler & Primzahlen** | ggT, kgV, Primfaktorzerlegung, Primzahltest, alle Teiler |
-| **Einheiten** | Umrechnen, z. B. `120 km/h in m/s`, `25 °C in °F` |
+| **Calculator** | Scientific calculator (degrees/radians, `sin`, `cos`, `tan`, `sqrt`, `log`, `ln`, `^`, `!`, `%`, `ans`), history |
+| **Fractions** | `+ − × ÷` with steps (common denominator, expanding, reciprocal, simplifying), mixed numbers (`1 2/3`), decimal & percent, any fraction expression evaluated exactly |
+| **Equations** | Linear, quadratic (discriminant + quadratic formula, complex roots too), cubic, rational equations, any other equation numerically (`sin(x) = 0.5`, `2^x = 32`) |
+| **Systems of equations** | Linear systems with any number of variables (matrix, determinant, solution) |
+| **Algebra & Calculus** | Simplify, expand, 1st and 2nd derivative, definite integral, function values |
+| **Graphing** | Plot several functions at once (separate with `;`) |
+| **Geometry** | Square, rectangle, triangles (Heron, Pythagoras, angles), circle, sector, trapezoid, rhombus, cube, cuboid, cylinder, cone, sphere, pyramid |
+| **Percent & Proportions** | Base / rate / part, direct and inverse rule of three |
+| **Statistics** | Mean, median, mode, quartiles, variance, standard deviation and more |
+| **Factors & Primes** | GCD, LCM, prime factorization, primality test, all divisors |
+| **Units** | Conversions, e.g. `120 km/h to m/s`, `25 degC to degF` |
 
-## Starten
+## Getting started
 
-Einfach `index.html` im Browser öffnen. Oder mit lokalem Server:
+Just open `index.html` in your browser, or use a local server:
 
 ```bash
 python -m http.server 8765
 ```
 
-Dann <http://localhost:8765> öffnen.
+Then open <http://localhost:8765>.
 
-## Aufbau
+## Structure
 
-- `index.html` – Oberfläche
-- `style.css` – Design (heller und dunkler Modus)
-- `app.js` – gesamte Rechenlogik
-- Rechen-Bibliothek: [math.js](https://mathjs.org) (per CDN geladen, Internet nötig)
+- `index.html` – user interface
+- `style.css` – styling (light and dark mode)
+- `app.js` – all the math logic
+- Math library: [math.js](https://mathjs.org) (loaded from a CDN, needs internet)
 
-## Eingabe-Tipps
+## Input tips
 
-- Malzeichen kann weggelassen werden: `2x`, `3(x+1)`
-- Dezimalkomma geht auch: `2,5`
-- Potenz: `x^2`, Wurzel: `sqrt(x)`, Pi: `pi`
+- You can leave out the multiplication sign: `2x`, `3(x+1)`
+- Powers: `x^2`, square root: `sqrt(x)`, pi: `pi`
+- In the calculator, `log` is base 10 and `ln` is the natural logarithm
