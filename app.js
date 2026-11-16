@@ -1,4 +1,5 @@
 /* Math Solver – every topic with step-by-step solutions. Requires math.js. */
+(() => {
 'use strict';
 
 const $ = (s) => document.querySelector(s);
@@ -650,3 +651,4 @@ const units = guard('#unit-out', () => {
 });
 $('#unit-go').onclick = units;
 onEnter('#unit-in', units);
+})();

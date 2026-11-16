@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mathe-Löser</title>
+  <link rel="stylesheet" href="../style.css">
+  <script src="../vendor/math.min.js"></script>
+</head>
+<body>
+  <header>
+    <a class="lang" href="../index.html">🇬🇧 English</a>
+    <h1>Mathe-Löser</h1>
+    <p>Brüche, Gleichungen, Terme, Geometrie, Statistik und mehr – mit Lösungsweg.</p>
+  </header>
+
+  <nav id="tabs">
+    <button data-tab="rechner" class="active">Rechner</button>
+    <button data-tab="brueche">Brüche</button>
+    <button data-tab="gleichungen">Gleichungen</button>
+    <button data-tab="lgs">Gleichungssysteme</button>
+    <button data-tab="terme">Terme &amp; Analysis</button>
+    <button data-tab="plotter">Funktionsplotter</button>
+    <button data-tab="geometrie">Geometrie</button>
+    <button data-tab="prozent">Prozent &amp; Dreisatz</button>
+    <button data-tab="statistik">Statistik</button>
+    <button data-tab="zahlen">Teiler &amp; Primzahlen</button>
+    <button data-tab="einheiten">Einheiten</button>
+  </nav>
+
+  <main>
+    <!-- Wissenschaftlicher Rechner -->
+    <section id="rechner" class="tab active">
+      <h2>Wissenschaftlicher Rechner</h2>
+      <div class="row">
+        <input id="calc-in" placeholder="z. B. 2^10 + sqrt(16) * sin(30)" autocomplete="off">
+        <button id="calc-go" class="primary">=</button>
+      </div>
+      <div class="row small">
+        <label><input type="radio" name="angle" value="deg" checked> Grad</label>
+        <label><input type="radio" name="angle" value="rad"> Bogenmaß</label>
+      </div>
+      <div id="keypad"></div>
+      <div id="calc-out" class="out"></div>
+      <h3>Verlauf</h3>
+      <ul id="calc-hist" class="hist"></ul>
+    </section>
+
+    <!-- Brüche -->
+    <section id="brueche" class="tab">
+      <h2>Bruchrechnung</h2>
+      <p class="hint">Bruchstrich: <code>/</code> · geteilt: <code>:</code> · gemischte Zahl: <code>1 2/3</code></p>
+      <div class="row">
+        <input id="frac-in" placeholder="z. B. 3/4 + 5/6" autocomplete="off">
+        <button id="frac-go" class="primary">Lösen</button>
+      </div>
+      <div class="chips" data-for="frac-in">
+        <span>3/4 + 5/6</span><span>7/8 - 1/3</span><span>2/3 * 9/4</span><span>5/6 : 10/9</span><span>1 1/2 + 2 3/4</span><span>48/60</span><span>(1/2 + 1/3) * 3/5</span>
+      </div>
+      <div id="frac-out" class="out"></div>
+    </section>
+
+    <!-- Gleichungen -->
+    <section id="gleichungen" class="tab">
+      <h2>Gleichungen lösen</h2>
+      <p class="hint">Lineare, quadratische, kubische und beliebige Gleichungen (numerisch).</p>
+      <div class="row">
+        <input id="eq-in" placeholder="z. B. 2x + 3 = 11" autocomplete="off">
+        <button id="eq-go" class="primary">Lösen</button>
+      </div>
+      <div class="chips" data-for="eq-in">
+        <span>2x + 3 = 11</span><span>x/4 - 1 = 2/3</span><span>x^2 - 5x + 6 = 0</span><span>x^2 + 2x + 5 = 0</span><span>x^3 - 6x^2 + 11x = 6</span><span>sin(x) = 0.5</span><span>2^x = 32</span>
+      </div>
+      <div id="eq-out" class="out"></div>
+    </section>
+
+    <!-- LGS -->
+    <section id="lgs" class="tab">
+      <h2>Lineare Gleichungssysteme</h2>
+      <p class="hint">Eine Gleichung pro Zeile.</p>
+      <textarea id="lgs-in" rows="4">2x + 3y = 12
+x - y = 1</textarea>
+      <div class="row"><button id="lgs-go" class="primary">Lösen</button></div>
+      <div class="chips" data-for="lgs-in" data-multi>
+        <span>2x + 3y = 12|x - y = 1</span><span>x + y + z = 6|2x - y + z = 3|x + 2y - z = 2</span>
+      </div>
+      <div id="lgs-out" class="out"></div>
+    </section>
+
+    <!-- Terme -->
+    <section id="terme" class="tab">
+      <h2>Terme &amp; Analysis</h2>
+      <div class="row">
+        <input id="term-in" placeholder="z. B. (x+2)^2 - 4x" autocomplete="off">
+      </div>
+      <div class="row small">
+        <label>Variable <input id="term-var" value="x" class="tiny"></label>
+        <label>a <input id="term-a" value="0" class="tiny"></label>
+        <label>b <input id="term-b" value="1" class="tiny"></label>
+      </div>
+      <div class="row wrap">
+        <button data-term="simplify">Vereinfachen</button>
+        <button data-term="expand">Ausmultiplizieren</button>
+        <button data-term="derive">Ableiten</button>
+        <button data-term="integral">Integral von a bis b</button>
+        <button data-term="value">Wert bei x = a</button>
+      </div>
+      <div class="chips" data-for="term-in">
+        <span>(x+2)^2 - 4x</span><span>(a+b)*(a-b)</span><span>x^3 * sin(x)</span><span>e^(2x)</span><span>3x^2 + 2x - 1</span>
+      </div>
+      <div id="term-out" class="out"></div>
+    </section>
+
+    <!-- Plotter -->
+    <section id="plotter" class="tab">
+      <h2>Funktionsplotter</h2>
+      <div class="row">
+        <input id="plot-in" value="x^2 - 2; sin(x); 0.5x + 1" autocomplete="off">
+        <button id="plot-go" class="primary">Zeichnen</button>
+      </div>
+      <div class="row small">
+        <label>x von <input id="plot-x0" value="-10" class="tiny"></label>
+        <label>bis <input id="plot-x1" value="10" class="tiny"></label>
+        <label>y von <input id="plot-y0" value="-6" class="tiny"></label>
+        <label>bis <input id="plot-y1" value="10" class="tiny"></label>
+      </div>
+      <canvas id="plot"></canvas>
+      <div id="plot-legend" class="legend"></div>
+    </section>
+
+    <!-- Geometrie -->
+    <section id="geometrie" class="tab">
+      <h2>Geometrie</h2>
+      <div class="row"><select id="geo-shape"></select></div>
+      <div id="geo-fields" class="row wrap"></div>
+      <div class="row"><button id="geo-go" class="primary">Berechnen</button></div>
+      <div id="geo-out" class="out"></div>
+    </section>
+
+    <!-- Prozent -->
+    <section id="prozent" class="tab">
+      <h2>Prozentrechnung</h2>
+      <p class="hint">Zwei Werte eintragen, einer bleibt leer.</p>
+      <div class="row wrap">
+        <label>Grundwert G <input id="p-g"></label>
+        <label>Prozentsatz p % <input id="p-p"></label>
+        <label>Prozentwert W <input id="p-w"></label>
+      </div>
+      <div class="row"><button id="p-go" class="primary">Berechnen</button></div>
+      <div id="p-out" class="out"></div>
+
+      <h2>Dreisatz</h2>
+      <div class="row wrap">
+        <label><input id="d-a" class="tiny" placeholder="3"> entspricht <input id="d-b" class="tiny" placeholder="12"></label>
+        <label><input id="d-c" class="tiny" placeholder="5"> entspricht ?</label>
+        <select id="d-mode"><option value="prop">proportional</option><option value="anti">antiproportional</option></select>
+        <button id="d-go" class="primary">Berechnen</button>
+      </div>
+      <div id="d-out" class="out"></div>
+    </section>
+
+    <!-- Statistik -->
+    <section id="statistik" class="tab">
+      <h2>Statistik</h2>
+      <p class="hint">Zahlen mit Leerzeichen oder Semikolon trennen.</p>
+      <textarea id="stat-in" rows="3">4 8 15 16 23 42 8</textarea>
+      <div class="row"><button id="stat-go" class="primary">Auswerten</button></div>
+      <div id="stat-out" class="out"></div>
+    </section>
+
+    <!-- Zahlentheorie -->
+    <section id="zahlen" class="tab">
+      <h2>Teiler &amp; Primzahlen</h2>
+      <div class="row">
+        <input id="num-in" value="84 126" placeholder="Ganze Zahlen, z. B. 84 126" autocomplete="off">
+        <button id="num-go" class="primary">Berechnen</button>
+      </div>
+      <div id="num-out" class="out"></div>
+    </section>
+
+    <!-- Einheiten -->
+    <section id="einheiten" class="tab">
+      <h2>Einheiten umrechnen</h2>
+      <div class="row">
+        <input id="unit-in" placeholder="z. B. 120 km/h in m/s" autocomplete="off">
+        <button id="unit-go" class="primary">Umrechnen</button>
+      </div>
+      <div class="chips" data-for="unit-in">
+        <span>120 km/h in m/s</span><span>3.5 kg in g</span><span>2 h in min</span><span>1 mile in km</span><span>25 degC in degF</span><span>5 m^2 in cm^2</span><span>1 l in cm^3</span>
+      </div>
+      <div id="unit-out" class="out"></div>
+    </section>
+  </main>
+
+  <footer>Rechnet komplett im Browser. Grundlage: <a href="https://mathjs.org">math.js</a>.</footer>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -2,6 +2,10 @@
 
 A calculator for (almost) every math topic – with **step-by-step solutions**. Runs entirely in the browser, no installation needed.
 
+Available in **English** (`index.html`) and **German / Deutsch** (`de/index.html`) – switch with the button at the top right.
+
+> 🇩🇪 **Deutsch:** Ein Taschenrechner für fast alle Mathe-Themen mit Lösungsweg. Die deutsche Version liegt in `de/index.html`, als Programm: `MatheLoeser-Deutsch.exe` unter [Releases](../../releases).
+
 ## Features
 
 | Area | What it does |
@@ -33,6 +37,7 @@ Then open <http://localhost:8765>.
 - `index.html` – user interface
 - `style.css` – styling (light and dark mode)
 - `app.js` – all the math logic
+- `de/` – German version (`index.html`, `app.js`)
 - `vendor/math.min.js` – math library [math.js](https://mathjs.org) 12.4.2 (Apache-2.0), bundled so it works offline
 - `desktop/` – Windows desktop app (pywebview + PyInstaller)
 
@@ -44,7 +49,14 @@ Then open <http://localhost:8765>.
 
 ## Desktop app (Windows .exe)
 
-Download `MathSolver.exe` from the [Releases](../../releases) page and double-click it. Works offline (math.js is bundled). Needs Microsoft Edge WebView2, which is built into Windows 10/11.
+Download from the [Releases](../../releases) page and double-click it:
+
+| File | Language |
+|---|---|
+| `MathSolver-English.exe` | 🇬🇧 English |
+| `MatheLoeser-Deutsch.exe` | 🇩🇪 Deutsch (German) |
+
+Both contain both languages and can switch at the top right; the name says which one opens first. Works offline (math.js is bundled). Needs Microsoft Edge WebView2, which is built into Windows 10/11.
 
 Build it yourself:
 
@@ -52,4 +64,4 @@ Build it yourself:
 powershell -ExecutionPolicy Bypass -File desktop\build.ps1
 ```
 
-The exe ends up in `dist\MathSolver.exe`.
+The exes end up in `dist\`.

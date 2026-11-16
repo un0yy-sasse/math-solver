@@ -119,3 +119,12 @@ footer a { color: var(--accent); }
   #keypad { grid-template-columns: repeat(5, 1fr); }
   canvas { height: 300px; }
 }
+
+header { position: relative; }
+.lang {
+  position: absolute; top: 24px; right: 16px; font-size: 14px; text-decoration: none;
+  color: var(--text); border: 1px solid var(--border); background: var(--card);
+  padding: 5px 12px; border-radius: 999px;
+}
+.lang:hover { border-color: var(--accent); }
+@media (max-width: 600px) { .lang { position: static; display: inline-block; margin-bottom: 8px; } }
