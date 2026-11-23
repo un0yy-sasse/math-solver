@@ -642,11 +642,35 @@ $('#num-go').onclick = numbers;
 onEnter('#num-in', numbers);
 
 // ---------- Units ----------
+// Names people type (German & English) -> math.js unit names.
+const UNIT_ALIASES = {
+  sek: 's', sec: 's', secs: 's', sekunde: 's', sekunden: 's', second: 's', seconds: 's',
+  millisekunde: 'ms', millisekunden: 'ms', millisecond: 'ms', milliseconds: 'ms',
+  minute: 'minute', minuten: 'minute', minutes: 'minute', mins: 'minute',
+  std: 'h', stunde: 'h', stunden: 'h', hour: 'h', hours: 'h', hrs: 'h',
+  tag: 'day', tage: 'day', tagen: 'day', days: 'day',
+  woche: 'week', wochen: 'week', weeks: 'week',
+  monat: 'month', monate: 'month', monaten: 'month', months: 'month',
+  jahr: 'year', jahre: 'year', jahren: 'year', years: 'year',
+  meter: 'm', kilometer: 'km', zentimeter: 'cm', millimeter: 'mm',
+  gramm: 'g', kilogramm: 'kg', tonne: 'tonne', tonnen: 'tonne',
+  liter: 'l', milliliter: 'ml',
+};
+function unitNames(s) {
+  return s.replace(/[A-Za-zÄÖÜäöüß]+/g, (w) => UNIT_ALIASES[w.toLowerCase()] || w);
+}
 const units = guard('#unit-out', () => {
   const raw = $('#unit-in').value.trim();
   if (!raw) return;
-  const s = normalize(raw).replace(/\s+(in|into)\s+/i, ' to ').replace(/°C/g, 'degC').replace(/°F/g, 'degF');
-  const r = math.evaluate(s);
+  const s = normalize(raw).replace(/°C/g, 'degC').replace(/°F/g, 'degF');
+  const [from, to] = s.split(/\s+(?:in|into|to|nach|zu)\s+/i).map((p) => unitNames(p.trim()));
+  let r;
+  try {
+    // math.unit() reads "min", "sec" etc. as units (math.evaluate would see the min()/sec() functions)
+    r = to ? math.unit(from).to(to) : math.unit(from);
+  } catch (_) {
+    r = math.evaluate(to ? `${from} to ${to}` : from);
+  }
   $('#unit-out').innerHTML = result(`${esc(raw)} = ${fmt(r)}`);
 });
 $('#unit-go').onclick = units;

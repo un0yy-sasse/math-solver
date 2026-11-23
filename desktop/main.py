@@ -44,8 +44,8 @@ def self_test(window: webview.Window) -> None:
     window.events.loaded.wait(30)
     time.sleep(1)
     res = window.evaluate_js(
-        "document.querySelector('#frac-in').value='3/4 + 5/6';document.querySelector('#frac-go').click();"
-        "document.title + ' | math=' + typeof math + ' | css=' + getComputedStyle(document.querySelector('.tab')).borderRadius + ' | ' + document.querySelector('#frac-out .result').innerText.replace(/\\n/g,' ')"
+        "document.querySelector('#frac-in').value='3/4 + 5/6';document.querySelector('#frac-go').click();document.querySelector('#unit-in').value='90 s in min';document.querySelector('#unit-go').click();"
+        "document.title + ' | math=' + typeof math + ' | css=' + getComputedStyle(document.querySelector('.tab')).borderRadius + ' | ' + document.querySelector('#frac-out .result').innerText.replace(/\\n/g,' ') + ' | ' + document.querySelector('#unit-out').innerText"
     )
     with open(out, "w", encoding="utf-8") as f:
         f.write(str(res))
